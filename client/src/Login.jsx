@@ -24,7 +24,7 @@ const Login = () => {
       );
 
       if (response.data.success) {
-        navigate("/vehicles"); // Redirect on successful login
+        navigate("/dashboard"); // Redirect on successful login
       }
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");

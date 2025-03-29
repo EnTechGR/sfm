@@ -2,7 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
-//
+const API_URL = import.meta.env.VITE_API_BASE_URL; // Read from environment variable
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +18,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${API_URL}/api/auth/login`,
         { email, password },
         { withCredentials: true } // Enable cookies
       );

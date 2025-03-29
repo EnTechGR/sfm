@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_BACKEND_URL; // Read from environment variable
+const API_URL = import.meta.env.VITE_API_BASE_URL; // Read from environment variable
 
 const Vehicles = () => {
   const [vehicles, setVehicles] = useState([]);

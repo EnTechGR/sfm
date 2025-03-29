@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Redirect after login
+import './index.css'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,10 +16,11 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", {
-        email,
-        password,
-      }, { withCredentials: true }); // Enable cookies
+      const response = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/api/auth/login`, 
+      { email, password },
+      { withCredentials: true } // Enable cookies
+    );
 
       if (response.data.success) {
         navigate("/vehicles"); // Redirect on successful login

@@ -24,6 +24,7 @@ const Login = () => {
       );
 
       if (response.data.success) {
+        localStorage.setItem("userEmail", email);
         navigate("/dashboard"); // Redirect on successful login
       }
     } catch (err) {

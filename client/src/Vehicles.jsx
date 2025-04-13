@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Import Link
 
-const API_URL = import.meta.env.VITE_API_BASE_URL; // Read from environment variable
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Vehicles = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -11,9 +12,8 @@ const Vehicles = () => {
     const fetchVehicles = async () => {
       try {
         const response = await axios.get(`${API_URL}/api/vehicles`, {
-          withCredentials: true, // Send cookies
+          withCredentials: true,
         });
-
         setVehicles(response.data.list || []);
       } catch (err) {
         setError("Failed to fetch vehicles");
@@ -29,13 +29,14 @@ const Vehicles = () => {
       {error && <p className="text-red-500">{error}</p>}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {vehicles.map((vehicle) => (
-          <button
+          <Link // Use Link for navigation
             key={vehicle.id}
+            to={`/upload/${vehicle.id}`} // Define the route with vehicle ID
             className="bg-white shadow-lg rounded-lg p-4 flex flex-col items-center"
           >
             <img src="/car.png" alt="Vehicle" className="w-20 h-20 mb-2" />
             <span className="text-lg font-semibold">{vehicle.label}</span>
-          </button>
+          </Link>
         ))}
       </div>
     </div>
